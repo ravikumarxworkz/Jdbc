@@ -1,0 +1,87 @@
+ 
+  
+  1. 
+  JDBC=JAVA DATABASE Conetvity = jdbc is api(application programming interface) with help of this we connect java application any  database application
+      withn of help this we java the data to database
+	
+   flow of jdbc
+   1.java application
+   2. java provides set of interface or jar files
+   3. database or vendor are provides implentation to jdbc api  interface 
+   4. database
+   
+   
+     
+   2.steps invled in connection of database
+   
+   
+   1.first load and register the file to project
+   2.create connection with help of drivermanger class
+   3.create statement and write the query
+   4. exuate the query 
+   5. storw the exuate query in resultset
+   6.close the connection and handle the excpation
+   
+   3  
+   statement=it is interface it extends the connection interface when we create statement every time we hvae to complie the query and exuate the statement is consume more and time complexcity and 
+   
+     
+	  syntax=[
+	  
+	  Statement statement=connection.createStatement();
+	    
+		 PreparedStatment= is als interface and its extends the statement interface and  we create  PreparedStatment there no need to complie the query every time once you complie 
+         we can exuate the statement many time 
+		 
+	  syntax=   PreparedStatment preparedStatment=connection.preparedStatment(); 
+	  
+	  
+	  4.import java.sql.Connection;
+        import java.sql.DriverManager;
+		
+		public class Question{
+		
+		public static void main(String[] args) throws excpation{
+		
+		
+		  Class.forName("com.mysql.cj.jdbc.Driver");
+		  
+		  Connection con=DriverManger.getConnection("jdbc:mysql://localhost:3306/jdbc,"root","Xworkzodc@123");
+		  if(con!=null){
+		  System.out.println("connection is ok");
+		  con.close():
+		  }
+		  else{
+		  System.out.println("connection is ok");
+		  }
+		  }
+		  }
+		  
+	5. 
+       public class JdbcDelete{
+	   
+	   
+ 			public static void main(String[] args) {
+
+		String query = "DELETE FROM jdbctable WHERE uname=? ";
+
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "Xworkzodc@123");
+				PreparedStatement statement = con.prepareStatement(query)) {
+
+			statement.setString(1, "sh");
+
+			int rowsAffected = statement.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("data is delete succesfully");
+			} else {
+				System.out.println("data is not delete succesfully");
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+
+ }
